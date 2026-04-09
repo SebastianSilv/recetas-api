@@ -5,7 +5,7 @@ apt-get update -y
 apt-get install -y python3-pip python3-venv git
 
 cd /home/ubuntu
-git clone https://github.com/TU_USUARIO/recetas-api.git app
+git clone https://github.com/SebastianSilv/recetas-api.git app
 cd app
 
 python3 -m venv venv

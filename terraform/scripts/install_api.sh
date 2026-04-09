@@ -6,7 +6,7 @@ apt-get install -y python3-pip python3-venv git
 
 # Clonar el repositorio (cambia la URL por la de tu repo)
 cd /home/ubuntu
-git clone https://github.com/TU_USUARIO/recetas-api.git app
+git clone https://github.com/SebastianSilv/recetas-api.git app
 cd app
 
 # Crear entorno virtual e instalar dependencias
