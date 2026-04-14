@@ -11,8 +11,6 @@ from api.services import task_service, receta_service
 from worker.worker import process_message
 
 
-# ── Fixtures ──────────────────────────────────────────────────────────────────
-
 @pytest.fixture
 def receta_valida():
     return RecetaCreate(
@@ -38,8 +36,6 @@ def mock_db():
     db["tasks"].update_one = MagicMock()
     return db
 
-
-# ── Tests de modelos ──────────────────────────────────────────────────────────
 
 class TestModelos:
     def test_receta_create_valida(self, receta_valida):
@@ -68,8 +64,6 @@ class TestModelos:
         assert ing.nombre == "Tomate"
         assert ing.cantidad == "3 unidades"
 
-
-# ── Tests del worker ──────────────────────────────────────────────────────────
 
 class TestWorker:
     def test_process_insert(self, mock_db):
@@ -113,8 +107,6 @@ class TestWorker:
             {"task_id": "task-789"}, {"$set": {"status": "done"}}
         )
 
-
-# ── Tests de servicios (con mocks de BD) ──────────────────────────────────────
 
 class TestTaskService:
     @pytest.mark.asyncio

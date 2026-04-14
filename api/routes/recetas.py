@@ -5,13 +5,11 @@ from api.services import receta_service, task_service
 router = APIRouter()
 
 
-# ── GET /recetas  (Síncrono) ───────────────────────────────────────────────────
 @router.get("/", response_model=list[RecetaResponse], summary="Consultar todas las recetas")
 async def get_recetas():
     return await receta_service.get_all_recetas()
 
 
-# ── GET /recetas/{id}  (Síncrono) ─────────────────────────────────────────────
 @router.get("/{receta_id}", response_model=RecetaResponse, summary="Consultar receta por ID")
 async def get_receta(receta_id: str):
     receta = await receta_service.get_receta_by_id(receta_id)
@@ -20,7 +18,6 @@ async def get_receta(receta_id: str):
     return receta
 
 
-# ── POST /recetas  (Asíncrono - retorna TaskId) ────────────────────────────────
 @router.post(
     "/",
     response_model=dict,
@@ -37,7 +34,6 @@ async def create_receta(receta: RecetaCreate):
     return {"task_id": task["task_id"], "status": "running"}
 
 
-# ── PUT /recetas/{id}  (Síncrono) ─────────────────────────────────────────────
 @router.put("/{receta_id}", response_model=RecetaResponse, summary="Actualizar receta")
 async def update_receta(receta_id: str, data: RecetaUpdate):
     updated = await receta_service.update_receta(receta_id, data)
@@ -46,7 +42,6 @@ async def update_receta(receta_id: str, data: RecetaUpdate):
     return updated
 
 
-# ── DELETE /recetas/{id}  (Asíncrono - retorna TaskId) ────────────────────────
 @router.delete(
     "/{receta_id}",
     response_model=dict,

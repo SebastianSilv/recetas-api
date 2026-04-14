@@ -14,8 +14,6 @@ from bson import ObjectId
 QUEUE_NAME = "recetas_queue"
 
 
-# ── Helpers para leer configuración desde Parameter Store o env ────────────────
-
 def get_param(param_env: str, fallback_env: str, fallback_default: str) -> str:
     param_name = os.getenv(param_env, "")
     if param_name:
@@ -36,16 +34,12 @@ def get_rabbitmq_url() -> str:
     return get_param("RABBITMQ_URL_PARAM", "RABBITMQ_URL", "amqp://guest:guest@localhost:5672/")
 
 
-# ── Conexión a MongoDB ─────────────────────────────────────────────────────────
-
 def get_db():
     uri = get_mongo_uri()
     client = MongoClient(uri)
     db_name = os.getenv("MONGO_DB_NAME", "recetas_db")
     return client[db_name]
 
-
-# ── Procesamiento de mensajes ──────────────────────────────────────────────────
 
 def process_message(body: bytes, db):
     message = json.loads(body)
@@ -78,8 +72,6 @@ def callback(ch, method, properties, body):
     process_message(body, db)
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
-
-# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
     url = get_rabbitmq_url()

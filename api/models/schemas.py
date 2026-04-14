@@ -3,11 +3,9 @@ from typing import List, Optional
 from enum import Enum
 
 
-# ── Recetas ────────────────────────────────────────────────────────────────────
-
 class Ingrediente(BaseModel):
     nombre: str
-    cantidad: str  # e.g. "200g", "2 tazas"
+    cantidad: str
 
 
 class RecetaCreate(BaseModel):
@@ -45,8 +43,6 @@ class RecetaResponse(BaseModel):
     pasos: List[str]
     ingredientes: List[Ingrediente]
 
-
-# ── Tasks ──────────────────────────────────────────────────────────────────────
 
 class TaskStatus(str, Enum):
     running = "running"

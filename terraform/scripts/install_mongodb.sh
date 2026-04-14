@@ -4,7 +4,6 @@ set -e
 apt-get update -y
 apt-get install -y gnupg curl
 
-# Agregar repositorio oficial de MongoDB 7
 curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
   gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
 
@@ -15,7 +14,6 @@ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gp
 apt-get update -y
 apt-get install -y mongodb-org
 
-# Configurar MongoDB para aceptar conexiones de cualquier IP (red privada)
 sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/' /etc/mongod.conf
 
 systemctl enable mongod

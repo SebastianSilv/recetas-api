@@ -23,8 +23,6 @@ def _publish_message(message: dict):
     connection.close()
 
 
-# ── Síncronos ──────────────────────────────────────────────────────────────────
-
 async def get_all_recetas() -> list:
     db = get_database()
     recetas = []
@@ -60,8 +58,6 @@ async def update_receta(receta_id: str, data: RecetaUpdate) -> dict | None:
         return None
     return await get_receta_by_id(receta_id)
 
-
-# ── Asíncronos (retornan task_id) ──────────────────────────────────────────────
 
 def publish_insert_receta(receta: RecetaCreate, task_id: str):
     """Envía mensaje para insertar una receta vía worker."""
