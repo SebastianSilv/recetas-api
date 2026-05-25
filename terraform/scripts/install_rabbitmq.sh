@@ -16,3 +16,7 @@ systemctl start rabbitmq-server
 rabbitmq-plugins enable rabbitmq_management
 
 echo "RabbitMQ instalado y corriendo."
+
+rabbitmqctl add_user recetas recetas123
+rabbitmqctl set_user_tags recetas administrator
+rabbitmqctl set_permissions -p / recetas ".*" ".*" ".*"

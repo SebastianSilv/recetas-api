@@ -101,7 +101,7 @@ resource "aws_ssm_parameter" "mongo_uri" {
 resource "aws_ssm_parameter" "rabbitmq_url" {
   name  = "/recetas/rabbitmq_url"
   type  = "SecureString"
-  value = "amqp://guest:guest@${module.ec2_rabbitmq.private_ip}:5672/"
+  value = "amqp://recetas:recetas123@${module.ec2_rabbitmq.private_ip}:5672/"
 }
 
 # ── Application Load Balancer ─────────────────────────────────────────────────

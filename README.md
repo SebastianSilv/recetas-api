@@ -1,4 +1,4 @@
-# 🥗 Recetas API
+# Recetas API
 
 API REST para gestión de recetas con procesamiento asíncrono usando FastAPI, RabbitMQ y MongoDB.
 
@@ -103,7 +103,7 @@ flake8 api/ worker/ tests/
    aws configure
    ```
 3. Crear un **Key Pair** en AWS EC2 y descargar el archivo `.pem`
-4. Subir el código a GitHub y reemplazar `TU_USUARIO` en los scripts de `terraform/scripts/`
+4. Subir el código a GitHub y reemplazar `USUARIO` en los scripts de `terraform/scripts/`
 
 ### Pasos para desplegar
 
